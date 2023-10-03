@@ -1,6 +1,15 @@
 package web.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
+
+
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -19,16 +28,13 @@ public class User {
             regexp = "^[A-Z][a-z]*(\\s(([a-z]{1,3})|(([a-z]+\\')?[A-Z][a-z]*)))*$")
     private String name;
 
-    @Column(name = "surname")
 
+    @Column(name = "surname")
     @NotEmpty(message = "Surname should not be empty")
     @Size(min = 2, max = 30, message = "Surname should be between 2 and 30 characters")
     @Pattern(message = "Bad formed person name: ",
             regexp = "^[A-Z][a-z]*(\\s(([a-z]{1,3})|(([a-z]+\\')?[A-Z][a-z]*)))*$")
     private String surname;
-
-
-
 
     public User(String name, String surname) {
         this.name = name;
@@ -62,5 +68,12 @@ public class User {
         this.surname = surname;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
+    }
 }

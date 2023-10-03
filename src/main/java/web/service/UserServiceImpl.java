@@ -20,11 +20,13 @@ public class UserServiceImpl implements UserService{
         return userDao.getAllUsers();
     }
 
+    @Transactional
     @Override
     public void addUser(User user) {
          userDao.addUser(user);
     }
 
+    @Transactional
     @Override
     public User show(int id) {
         return userDao.show(id);
